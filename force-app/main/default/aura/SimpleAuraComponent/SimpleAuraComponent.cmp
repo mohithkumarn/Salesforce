@@ -1,0 +1,5 @@
+<aura:component implements="force:lightningQuickAction">
+    Hola Amigo 
+    <br/>
+    <c:simpleLwc/>
+</aura:component>	
