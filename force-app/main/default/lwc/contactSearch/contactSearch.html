@@ -1,4 +1,9 @@
 <template>
+    <lightning-radio-group name="radioGroup"
+                          label="Radio Group"
+                          options={options}
+                          value={value}
+                          type="radio"></lightning-radio-group>
     <lightning-button label="Contacts" onclick={getContacts}>
     </lightning-button>
     <template if:true={wiredContacts.data}>
