@@ -1,4 +1,4 @@
-public with sharing class extendClass extends extendClass {
+public with sharing class extendClass extends ApexBasics {
     public extendClass() {
         System.debug('extended class');
     }
