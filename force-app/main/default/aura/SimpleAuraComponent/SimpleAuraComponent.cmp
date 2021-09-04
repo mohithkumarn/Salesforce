@@ -1,4 +1,4 @@
-<aura:component implements="force:lightningQuickAction">
+<aura:component implements="force:lightningQuickAction","flexipage:availableForAllPageTypes" access="global">
     Hola Amigo 
     <br/>
     <c:simpleLwc/>
