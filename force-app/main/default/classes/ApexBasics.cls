@@ -1,4 +1,5 @@
-public class ApexBasics {
+public with sharing class ApexBasics {
+   
    public Integer passbyvalandref(Integer a)
     {
       return a;
@@ -6,5 +7,7 @@ public class ApexBasics {
     passbyvalandref(10)
     integer a=20;
     passbyvalandref(a)
+    
+
 
 }
