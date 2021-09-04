@@ -8,7 +8,8 @@ import EMAIL_FIELD from '@salesforce/schema/Contact.Email';
 
 
 export default class ContactRecord extends LightningElement {
-
+    @api recordId;
+    @api objectApiName;
 
     fields = [NAME_FIELD, ACCOUNT_FIELD, FIRSTNAME_FIELD,LASTNAME_FIELD,EMAIL_FIELD];
 
