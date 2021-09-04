@@ -8,7 +8,6 @@ public with sharing class extendClass extends extendClass {
     public static String polymorphism(String a, String b){
         return a,b;
     }
-    Account acct = new Account(Name = ‘Test Account’, …); or
 ■ Account acct = new Account();
 acct.Name = ‘Test Account’;
 insert (acct);
