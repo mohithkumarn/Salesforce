@@ -1,39 +1,16 @@
-import { LightningElement, track, wire } from 'lwc';
-import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
-import { loadStyle } from 'lightning/platformResourceLoader';
-import searchContacts from '@salesforce/apex/ContactSearchController.searchContacts';
-export default class BearListNav extends NavigationMixin(LightningElement) {
-	@track searchTerm = '';
-    @track bears;
-    @wire(CurrentPageReference) pageRef;
-    @wire(searchContacts, {searchTerm: '$searchTerm'})
-    loadBears(result) {
-        this.bears = result;
-        if (result.data) {
-            fireEvent(this.pageRef, 'bearListUpdate', result.data);
-        }
+import { LightningElement, wire } from 'lwc';
+import getAllContacts from '@salesforce/apex/ContactSearchController.getAllContacts'
+
+export default class ContactsLWC extends LightningElement {
+    @wire(getAllContacts) wiredContacts; //These will be automatically available if successful
+    getContacts() {
+        getAllContacts()
+        .then(contacts => {
+            //console.log(JSON.stringify(contacts))
+            console.log('Got Contacts: ' + contacts.length);
+        })
+        .catch(error => {
+            console.log(error)
+        });
     }
-	connectedCallback() {
-		loadStyle(this, ursusResources + '/style.css');
-	}
-	handleSearchTermChange(event) {
-		window.clearTimeout(this.delayTimeout);
-		const searchTerm = event.target.value;
-		this.delayTimeout = setTimeout(() => {
-			this.searchTerm = searchTerm;
-		}, 300);
-	}
-	get hasResults() {
-		return (this.bears.data.length > 0);
-	}
-	handleBearView(event) {
-		this[NavigationMixin.Navigate]({
-			type: 'standard__recordPage',
-			attributes: {
-				recordId: event.target.bear.Id,
-				objectApiName: 'Contact',
-				actionName: 'view',
-			},
-		});
-	}
 }

@@ -5,26 +5,19 @@ public with sharing class ContactSearchController {
             FROM Contact ORDER BY Name LIMIT 10];
     }
     @AuraEnabled(Cacheable=true)
-    public static Contact[] searchContacts(String searchTerm) {
-        // Return all bears when no search term
-        searchTerm = searchTerm.trim();
-        if (searchTerm == '') {
-            return getAllContacts();
-        }
-        // Prepare query paramters
-        searchTerm = '%'+ searchTerm +'%';
-        // Execute search query
-        return [SELECT Id, Name
-            FROM Contact WHERE Name LIKE :searchTerm ORDER BY Name LIMIT 10];
+    public static List<Contact> searchContacts(String namePattern) {
+        String searchString = '%' + namePattern + '%';
+        return( [select id, name, email, CreatedDate 
+                   from Contact 
+                  where Name like :searchString]);
+    
+    
+    
+    
+    
+    
+    
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
